@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+    margin: 0;
+    padding: 0;
+    background: #ccc;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+
+
+#title{
+    text-align: center;
+    font-size: 50px;
+}
+
+
+#inputText{
+    width: 300px;
+    height: 46px;
+    border: 1px solid black;
+    outline: none;
+    font-size: 25px;
+    vertical-align: middle;
+    border: 3px solid orange;
+    border-radius: 15px;
+    color: purple;
+}
+
+#addToDo{
+    height: 45px;
+    width: 80px;
+    border: 1px solid black;
+    vertical-align: middle;
+    font-size: 25px;
+    outline: none;
+    cursor: pointer;
+    background-color: green;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#addToDo:active {
+    background: blue;
+}
+
+#clearToDo{
+    height: 45px;
+    width: 100px;
+    border: 1px solid black;
+    vertical-align: middle;
+    font-size: 25px;
+    outline: none;
+    cursor: pointer;
+    background-color: red;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#clearToDo:active{
+    background: #000;
+}
+
+.paragraph-styling{
+    margin-top: 35px;
+    cursor: pointer;
+    font-size: 35px;
+    color: purple;
+    text-transform: capitalize;
+}
+
+.to-dos{
+    margin-top: 25px;
+}
+</style>
+<body>
+    <div class="container">
+        <h1 id="title"> ToDo List</h1>
+        <div>
+            <input type="text" id="inputText">
+<input type="submit" id="addToDo" value="Add">
+<input type="submit" id="clearToDo" value="Clear">
+        </div>
+        <div class="to-dos" id="toDoContainer">
+
+        </div>
+    </div>
+
+
+
+<script>
+/*add butonu seçiyorum*/ var addToDoButton = document.getElementById('addToDo');
+/*tanımladım böyle bir id olduğunu*/ var ToDoContainer = document.getElementById('ToDoContainer');
+var inputText = document.getElementById('inputText');
+
+
+
+/*add butonuna tıklandığında ne olmasını istiyorsan addEventListener ile click ekliyorum*/ addToDoButton.addEventListener('click', function(){
+/*create diyerek p etiketi oluşturdum paragraph yazdığımda 'p' etiketi olucak*/ var paragraph = document.createElement('p');
+/*burda eklediğim 'p' etiketine class ismi ekliyorum*/ paragraph.classList.add('paragraph-styling');
+/*toDoContainer'e altına 'p' etiketini çocuğu olarak ekliyorum*/ toDoContainer.appendChild(paragraph);    
+/*inputText id'sini input'un value'sine yaz yazdığını alttaki paragraph etiketine ekle*/ paragraph.innerHTML = inputText.value;
+/*burda value'ye yazı yazdıktan sonra sıfırlaması için boş bırakıyorum */ inputText.value = '';  
+
+
+
+/*paragraph tıklanma metodu ekliyorum*/ paragraph.addEventListener('click', function(){
+/*paragraph üstüne bir kere tıklandığında üstünü çizsin*/ paragraph.style.textDecoration = 'line-through';
+})
+
+
+/*burda da 'dblclick' iki kere tıklandığında eklediğim paragraph etiketine yazdığım kodlarımın etki etmesiini istiyorum*/ paragraph.addEventListener('dblclick', function (){
+/*toDoContainer altındaki çocukların silinmesini 'removeChild'diyerek seçiyorum ama altındaki hangi çoculkarı paragraph adındaki çocukları siliyorum*/ toDoContainer.removeChild(paragraph);
+
+})
+/*burda clear butonunu seçiyorum clear butonuna tıklandığında gerçekleşecek function*/ clearToDo.addEventListener('click', function(){
+/*burada 'remove'diyerek paragraph etiketine bağlı olanları siliyorum*/ paragraph.remove();
+})
+})
+</script>
+
+
+
+
+</body>
+</html>
